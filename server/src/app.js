@@ -3,6 +3,7 @@ import cors from "cors";
 
 import healthRoutes from "./routes/health.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import errorHandler from "./middlewares/error.middleware.js";
 
 const app = express();
 
@@ -21,5 +22,5 @@ app.get("/", (req, res) => {
     message: "Welcome to RecruitFlow API 🚀",
   });
 });
-
+app.use(errorHandler);
 export default app;
