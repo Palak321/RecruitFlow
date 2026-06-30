@@ -22,4 +22,25 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  jobs Job[]
+}
+
+model Job {
+  id               String   @id @default(cuid())
+  title            String
+  company          String
+  location         String
+  description      String
+  salary           Int?
+  employmentType   String
+  experienceLevel  String
+  isRemote         Boolean  @default(false)
+  vacancies        Int      @default(1)
+  status           String   @default("OPEN")
+
+  recruiterId      String
+  recruiter        User     @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
